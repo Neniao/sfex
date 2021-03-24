@@ -42,7 +42,7 @@ export default class App extends React.Component{
  	//<TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
         //	<Text>Close</Text>
       	//</TouchableOpacity>
-	<Text style={{padding:10}}>Close abasdadad OPen AFAFSAFSAFAF</Text>
+	<Text style={{padding:10}}>Close ikkkabasdadad-sssssOPen AFAFSAFSAFAF</Text>
       );
   };
   render(){
