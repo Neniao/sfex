@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,Picker } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,Picker,Button } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 //import * as RNFS from 'react-native-fs'
-const RNFS = require('react-native-fs');
+//const RNFS = require('react-native-fs');
 
 /*const svpath = RNFS.ExternalDirectoryPath + 'sv';
 var svfiles = [];
@@ -22,23 +22,27 @@ export default class App extends React.Component{
   	super(props);
 	this.state={
 		open:false,
-		sfiles:sffiles
+		//sfiles:sffiles
 	};
   }
   toggleOpen = () => {
   	this.setState({open:!this.state.open});
   };
   drawerContent = () => {
-      let items = [];
-      for (let i=0;i<svfiles.length;i++) items.push(<Picker.Item lable={svfiles[i].name} />);
+      //let items = [];
+      //for (let i=0;i<svfiles.length;i++) items.push(<Picker.Item lable={svfiles[i].name} />);
       return (
-      	<Picker 
-	selectedValue={selectedValue}
-	style={{height:30,width:50}}
-	>
-		{items}		
-	</Picker>
-
+	//<TouchableOpacity 
+	//onPress={this.toggleOpen}
+	//style={styles.animatedBox}
+	//>
+	//	<Text> Survey1</Text>
+	//	<Text> Survey2</Text>
+	//</TouchableOpacity>
+ 	//<TouchableOpacity onPress={this.toggleOpen} style={styles.animatedBox}>
+        //	<Text>Close</Text>
+      	//</TouchableOpacity>
+	<Text style={{padding:10}}>Close abasdadad OPen AFAFSAFSAFAF</Text>
       );
   };
   render(){
@@ -51,10 +55,10 @@ export default class App extends React.Component{
 		animationTime={250}
 		overlay={true}
 		opacity={0.8}
+		buttonstyle={styles.button}
 		>
-	     	<TouchableOpacity onPress={this.toggleOpen} style={styles.body}>
-			<Text>SurV</Text>		
-		</TouchableOpacity>
+	     	<Button onPress={this.toggleOpen} title="SuV" />
+
 	      </MenuDrawer>
 	   </View>
 	  );
@@ -79,5 +83,10 @@ const styles = StyleSheet.create({
 	alignItems:'center',
 	justifyContent:'center',
 	backgroundColor:'#f04812'
+  },
+  button:{
+  	position:'absolute',
+	top:'50%',
+	left:'50%',
   }
 });
