@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,Picker,Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,Picker,Button, TextInput } from 'react-native';
 import MenuDrawer from 'react-native-side-drawer';
 //import * as RNFS from 'react-native-fs'
 //const RNFS = require('react-native-fs');
@@ -23,6 +23,8 @@ export default class App extends React.Component{
 	this.state={
 		open:false,
 		surveys:svs,
+		sstate:0,
+		qstate:0,
 		//sfiles:sffiles
 	};
   }
@@ -50,6 +52,33 @@ export default class App extends React.Component{
 	</View>
       );
   };
+
+  drawQuestion = () => {
+      const {qstate,sstate,surveys} = this.state;
+      let items = [];
+      console.log("sstate:",sstate);
+      console.log("qstate:",qstate);
+      //console.log("survey:",surveys[sstate]);
+      if (surveys[sstate].Questions[qstate].QuestionType == "input"){
+      	items.push(<TextInput key="0"></TextInput>)
+      }  
+      else{
+	console.log("Items:",surveys[sstate].Questions[qstate].Items);
+      	for (let i=0;i<surveys[sstate].Questions[qstate].Items.length;i++) items.push(<Text key={i}>{surveys[sstate].Questions[qstate].Items[i]}</Text>);
+      }
+
+/*      return (
+
+	<View >
+		<Text>{surveys[sstate].Questions[qstate].QuestionInfo}</Text>
+		{items} 
+	</View>
+      );
+*/
+	return (
+		<Text>This is question text</Text>	
+	)
+  };
   render(){
 	  return (
 	   <View style={styles.container}>
@@ -60,10 +89,13 @@ export default class App extends React.Component{
 		animationTime={250}
 		overlay={true}
 		opacity={0.8}
-		buttonstyle={styles.button}
+		question={this.drawQuestion()}
+		//buttonstyle={styles.button}
 		surveys={this.state.surveys}
 		>
-	     	<Button onPress={this.toggleOpen} title="SuV" />
+		<TouchableOpacity onPress={this.toggleOpen} style={styles.buttonLeft}><Text>Back</Text></TouchableOpacity>	
+		<TouchableOpacity onPress={this.toggleOpen} style={styles.button}><Text>Suv</Text></TouchableOpacity>
+		<TouchableOpacity onPress={this.toggleOpen} style={styles.buttonRight}><Text>Next</Text></TouchableOpacity>
 
 	      </MenuDrawer>
 	   </View>
@@ -73,23 +105,21 @@ export default class App extends React.Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width:'100%',
+    height:'100%',
     zIndex:0
   },
-  animatedBox:{
+  /*animatedBox:{
 	flex:1,
 	backgroundColor:"#38c8ec",
 	padding:10
-  },
-  body:{
+  },*/
+ /* body:{
 	flex:1,
 	alignItems:'center',
 	justifyContent:'center',
 	backgroundColor:'#f04812'
-  },
+  },*/
   drawer:{
   	backgroundColor:"#38c8ec",
 	paddingTop:35,
@@ -97,8 +127,18 @@ const styles = StyleSheet.create({
   },
   button:{
   	position:'absolute',
-	top:'50%',
-	left:'50%',
+	top:500,
+	left:170,
+  },
+  buttonLeft:{
+  	position:'absolute',
+	top:500,
+	left:80,
+  },
+  buttonRight:{
+  	position:'absolute',
+	top:500,
+	right:80,
   },
   surveyList:{
   	paddingTop:35,
